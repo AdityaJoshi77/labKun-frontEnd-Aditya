@@ -6,8 +6,21 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'radial-mask': "radial-gradient(farthest-side, #0000 70%, #000 72%)",
+      },
+    },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        '.mask-radial': {
+          '-webkit-mask': "radial-gradient(farthest-side, #0000 80%, #000 100%)",
+          'mask': "radial-gradient(farthest-side, #0000 80%, #000 100%)",
+        },
+      });
+    },
+  ],
 };
 
