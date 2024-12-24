@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 
-import Dashboard from "./pages/Dashboard";
-import Subject from "./pages/Subject";
 
 
 export const metadata: Metadata = {
@@ -19,8 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Dashboard/>
-        {/* <Subject/> */}
+    
         {children}
       </body>
     </html>

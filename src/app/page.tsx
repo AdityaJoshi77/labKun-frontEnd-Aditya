@@ -1,9 +1,10 @@
+import Dashboard from "./dashboard/page";
+import Subject from "./subject/page";
 
 
 export default function Home() {
   return (
-    <div>
-      
-    </div>
+    <Dashboard/>
+    // <Subject/>
   );
 }
