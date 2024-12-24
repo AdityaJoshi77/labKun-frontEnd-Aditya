@@ -12,7 +12,7 @@ module.exports = {
       },
 
       backgroundImage: {
-        'radial-mask': "radial-gradient(farthest-side, #0000 70%, #000 72%)",
+        'conic-spinner': "conic-gradient(currentColor 20%, transparent)",
       },
     },
   },
