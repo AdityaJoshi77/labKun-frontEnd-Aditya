@@ -1,8 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
-import Sidebar from "../components/Sidebar";
-import Card from "../components/Card";
-import Spinner from "../components/Spinner";
+import { useSearchParams } from "next/navigation";
+
+
+import Sidebar from "../../components/Sidebar";
+import Card from "../../components/Card";
+import Spinner from "../../components/Spinner";
+
 
 interface Class {
   title: string;
@@ -15,6 +19,7 @@ interface User {
   semester: string;
   classes: Class[];
 }
+
 
 const Dashboard = () => {
 
@@ -86,11 +91,10 @@ const Dashboard = () => {
                 title={classItem.title}
                 description={classItem.description}
                 image={classItem.image}
-                // redirectPath={`/subject?title=${encodeURIComponent(classItem.title)}`}
-                redirectPath={`/subject?title=${encodeURIComponent(classItem.title)}&semester=${user.semester}&user=${encodeURIComponent(user.name)}`}
+                redirectPath={`/subject?title=${encodeURIComponent(classItem.title)}`}
               />
             ))
-          ) : ( 
+          ) : (
             <p>No classes found</p>
           )}
         </section>

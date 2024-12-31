@@ -6,6 +6,18 @@ interface CardProps {
     redirectPath: string;
   }
   
+  interface User {
+    name: string;
+    semester: string;
+    classes: Class[];
+  }
+
+  interface Class {
+    title: string;
+    description: string;
+    image: string;
+  }
+
   const Card = ({ title, description, image, redirectPath }: CardProps) => {
     const router = useRouter();
 

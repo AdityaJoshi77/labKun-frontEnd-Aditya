@@ -8,34 +8,34 @@ import { useSearchParams } from "next/navigation";
 interface AssigntabProps {
   title: string;
   description: string;
+  redirectPath:string;
 }
 
-interface User {
-  name: string;
-  semester: string;
-  classes: [];
-}
-
-interface Topic {
+interface Subject {
   title: string;
   description: string;
   image: string;
   assignments: AssigntabProps[];
 }
 
+
+interface Class {
+  title: string;
+  description: string;
+  image: string;
+}
+
 const Subject = () => {
+
   const searchParams = useSearchParams();
   const title = searchParams.get("title") || "Default Title";
-  const [user, setUser] = useState<User>({
-    name: "User1",
-    semester: "1",
-    classes: [],
-  });
+  const user = searchParams.get("user") || "Default User";
+  const semester = searchParams.get("semester") || "Default Semester";
 
-  const [topic, setTopic] = useState<Topic>({
+  const [subject, setSubject] = useState<Subject>({
     title: "Loading...",
     description: "Please wait while we load the subject details.",
-    image: "/images/iot.webp", // Placeholder image
+    image: "/images/iot.webp",
     assignments: [],
   });
 
@@ -44,26 +44,28 @@ const Subject = () => {
   useEffect(() => {
     const fetchSubject = async () => {
       setLoading(true);
+
+      // API call yet to be added
       try {
         const mock = {
           title: "IoT",
           description: "Let's build cool machines",
           image: "/images/iot.webp",
           assignments: [
-            { title: "Add two numbers", description: "I will add two numbers" },
-            { title: "Subtract two numbers", description: "I will subtract two numbers" },
-            { title: "Multiply two numbers", description: "I will multiply two numbers" },
-            { title: "Divide two numbers", description: "I will divide two numbers" },
+            { title: "Add two numbers", description: "I will add two numbers", redirectPath: "#"  },
+            { title: "Subtract two numbers", description: "I will subtract two numbers", redirectPath: "#" },
+            { title: "Multiply two numbers", description: "I will multiply two numbers", redirectPath: "#"},
+            { title: "Divide two numbers", description: "I will divide two numbers", redirectPath: "#"},
           ],
         };
 
-        setTopic(mock);
+        setSubject(mock);
       } catch (error) {
         console.error("Error fetching assignment data", error);
-        setTopic({
+        setSubject({
           title: "Error loading topic",
           description: "Unable to load subject details at this time.",
-          image: "/images/iot.webp", // Fallback error image
+          image: "/images/iot.webp",
           assignments: [],
         });
       } finally {
@@ -81,31 +83,33 @@ const Subject = () => {
         <Spinner />
       ) : (
         <div className="flex flex-col flex-grow items-center">
+
           {/* Welcome Header */}
           <div className="flex flex-col w-11/12 mx-auto items-start">
             <h1 className="text-xl mt-5 font-bold">
-              Welcome to the {topic.title} Lab,{" "}
-              <span className="font-bold text-blue-600">{user.name}</span>
+              Welcome to the {subject.title} Lab,{" "}
+              <span className="font-bold text-blue-600">{user}</span>
             </h1>
-            <h2 className="text-gray-500 italic">Sem {user.semester}</h2>
+            <h2 className="text-gray-500 italic">Sem {semester}</h2>
           </div>
 
           {/* Subject Details */}
           <div className="flex flex-col w-full mx-auto mt-3">
             {/* Subject Image */}
             <img
-              src={topic.image}
-              alt={topic.title}
+              src={subject.image}
+              alt={subject.title}
               className="w-11/12 h-48 object-cover rounded-lg mx-auto mb-4 border-4 border-black shadow-2xl"
             />
 
             {/* Assignment Tabs */}
             <div className="flex flex-col w-11/12 mx-auto">
-              {topic.assignments.length === 0 ? (
+            
+              {subject.assignments.length === 0 ? (
                 <p className="text-gray-600 italic">There are no assignments for this subject.</p>
               ) : (
-                topic.assignments.map((assign, index) => (
-                  <Assigntab key={index} title={assign.title} description={assign.description} />
+                subject.assignments.map((assign, index) => (
+                  <Assigntab key={index} title={assign.title} description={assign.description} redirectPath={`/editor?title=${encodeURIComponent(assign.title)}`} />
                 ))
               )}
             </div>
