@@ -6,6 +6,7 @@ import Editor from "./editor/page";
 import LoginPage from "./loginpage/page";
 import LeftPanel from "./components/LeftPanel";
 import SignUp from "./signup/page";
+import Testdashboard from "./components/Testdashboard";
 
 
 export default function Home() {
@@ -17,6 +18,6 @@ export default function Home() {
     // <Description/>
     // <Editor/>
     <SignUp/>
-
+    // <Testdashboard/>
   );
 }
