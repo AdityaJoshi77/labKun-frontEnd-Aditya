@@ -18,7 +18,7 @@ const Loginbox = () => {
   }
 
   return (
-    <div className='flex flex-col m-1 md:w-1/2  rounded-md items-center justify-center gap-9'>
+    <div className='flex flex-col m-1 md:w-1/2  rounded-md items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 gap-9'>
       {/* Welcome Banner */}
       <div className='flex flex-col items-center md:w-1/2 lg:w-[450px]'>
         <p className='text-4xl text-black font-semibold text-center'>
@@ -36,7 +36,7 @@ const Loginbox = () => {
         <div className='flex flex-col items-start gap-1 relative md:w-1/2 lg:w-[450px]'>
           <label
             htmlFor='emailbox'
-            className='text-md text-black font-semibold bg-white absolute ml-5 z-10'
+            className='text-md text-black font-semibold bg-gradient-to-br from-blue-50 to-blue-100 absolute ml-5 z-10'
           >
             Email
           </label>
@@ -46,7 +46,7 @@ const Loginbox = () => {
             placeholder='Enter your email'
             value={email}
             onChange={e => setEmail(e.target.value)}
-            className='rounded-lg h-[40px] w-full text-md text-black px-3 border border-black bg-white mt-3 placeholder:text-sm placeholder:text-gray-400'
+            className='rounded-lg h-[40px] w-full text-md text-black px-3 border border-black bg-gradient-to-br from-blue-50 to-blue-100 mt-3 placeholder:text-sm placeholder:text-gray-400'
           />
         </div>
 
@@ -54,7 +54,7 @@ const Loginbox = () => {
         <div className='flex flex-col items-start gap-1 relative w-full md:w-1/2 lg:w-[450px]'>
           <label
             htmlFor='passwordbox'
-            className='text-md bg-white font-semibold text-black absolute ml-5 z-10'
+            className='text-md bg-gradient-to-br from-blue-50 to-blue-100 font-semibold text-black absolute ml-5 z-10'
           >
             Password
           </label>
@@ -65,7 +65,7 @@ const Loginbox = () => {
               value={password}
               onChange={e => setPassword(e.target.value)}
               placeholder='Enter your password'
-              className='rounded-lg h-[40px] w-full px-3 pr-10 mt-3 text-lg text-black border border-black bg-white placeholder:text-sm placeholder:text-gray-400'
+              className='rounded-lg h-[40px] w-full px-3 pr-10 mt-3 text-lg text-black border border-black bg-gradient-to-br from-blue-50 to-blue-100 placeholder:text-sm placeholder:text-gray-400'
             />
             {/* Eye Icon */}
             <button
