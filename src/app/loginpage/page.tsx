@@ -7,7 +7,7 @@ const LoginPage = () => {
     
     // outer most div
 
-    <main className = 'flex flex-row md:1/2 bg-blue-100'>
+    <main className = 'flex flex-row md:1/2 bg-gradient-to-br from-blue-50 to-blue-100'>
 
         {/* left-half for hero image */}
         <LeftPanel/>
