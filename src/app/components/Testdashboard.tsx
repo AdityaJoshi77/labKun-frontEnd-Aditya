@@ -13,7 +13,7 @@ const Testdashboard = (/**isCodeRunning:TestdashboardProps */) => {
 const [selectedButton, setSelectedButton] = useState<'test-case' | 'test-result'>();
 
 // ICR == isCodeRunning
-var ICR = true;
+var ICR = false;
 
   return (
   <div className="testDiv flex flex-row items-center justify-center bg-gray-700 w-screen h-screen">
