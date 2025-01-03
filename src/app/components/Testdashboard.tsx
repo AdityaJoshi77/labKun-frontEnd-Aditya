@@ -1,6 +1,6 @@
 
 "use client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import TestcasePanel from "./TestcasePanel";
 import TestresultPanel from "./TestresultPanel";
 
@@ -8,12 +8,21 @@ import TestresultPanel from "./TestresultPanel";
 //   isCodeRunning : boolean;
 // }
 
-const Testdashboard = (/**isCodeRunning:TestdashboardProps */) => {
+
+
+
+const Testdashboard = (/**{isCodeRunning}:TestdashboardProps */) => {
 
 const [selectedButton, setSelectedButton] = useState<'test-case' | 'test-result'>();
+const [isCodeRunning, setCodeRunning] = useState()
 
 // ICR == isCodeRunning
-var ICR = false;
+var ICR = true;
+// data == test-case data fetched from backend.
+var data = {
+  testcase : {},
+  expectedOutput : {},
+};
 
   return (
   <div className="testDiv flex flex-row items-center justify-center bg-gray-700 w-screen h-screen">
@@ -38,7 +47,7 @@ var ICR = false;
 
       {/* div for TestCase / TestResult Panel */}
       <div className="flex flex-col items-center justify-center bg-gray-800 h-full rounded-bl-xl rounded-br-xl text-gray-400">
-          { selectedButton === 'test-result' ? (<TestresultPanel isRun = {ICR} />) : (<TestcasePanel isRun = {ICR}/>)}
+          { selectedButton === 'test-result' ? (<TestresultPanel isRun = {ICR} data = {data} />) : (<TestcasePanel data = {data}/>)}
          
       </div>
 

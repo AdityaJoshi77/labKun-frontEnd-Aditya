@@ -3,10 +3,13 @@
 import {useState, useEffect} from 'react';
 
 interface TestcasePanelProps{
-  isRun : boolean;
+  data : {
+    testcase : {},
+    expectedOutput : {},
+  };
 }
 
-const TestcasePanel = ({isRun}:TestcasePanelProps) => {
+const TestcasePanel = ({data}:TestcasePanelProps) => {
 
 
   return (
@@ -19,8 +22,7 @@ const TestcasePanel = ({isRun}:TestcasePanelProps) => {
             <button className='bg-gray-800 text-white rounded-md border px-[23px] py-[5px] hover:bg-gray-700 my-4 mx-2'>Case 2</button>
             <button className='bg-gray-800 text-white rounded-md border px-[23px] py-[5px] hover:bg-gray-700 my-4 mx-2'>Case 3</button>
 
-            {/* <button>Case 2</button> */}
-            {/* <button>Case 3</button> */}
+
         </div>
 
         {/* test input holder */}
@@ -46,22 +48,6 @@ const TestcasePanel = ({isRun}:TestcasePanelProps) => {
             value = "expected output textfield"
             className='bg-gray-700 border p-3 border-black text-white h-[60px] rounded-lg pointer-events-none' />
           </div>
-
-          
-              
-          {/* Your Output */}
-          {
-            isRun ? (
-              <div className="flex flex-col w-full">
-                <label htmlFor="expected-output" className='text-gray-400 ml-1 text-sm'>Your Output =</label>
-                <input type="text"
-                readOnly
-                id = "expected-output"
-                value = "Your output textfield"
-                className='bg-gray-700 border p-3 border-black text-white h-[60px] rounded-lg pointer-events-none' />
-              </div>
-            ) : (<div></div>)
-          }
           
 
         </div>

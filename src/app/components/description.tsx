@@ -1,7 +1,20 @@
 import React from 'react'
+
+import { useState } from 'react';
 import { MdOutlineDescription } from "react-icons/md";
 
-const Description = () => {
+
+interface testCaseData{
+    testCase:string | null;
+    expectedOutput:string | null;
+}
+
+interface descriptionProps{
+    outputData:string | null;
+    testcaseData:testCaseData[] | null;
+}
+
+const Description = ({testcaseData, outputData}:descriptionProps) => {
   return (
     <main className='flex flex-col h-auto w-[450px] overflow-hidden rounded-md bg-gray-800 border border-black'>
 

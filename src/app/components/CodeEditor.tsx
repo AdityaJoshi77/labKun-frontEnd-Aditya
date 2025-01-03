@@ -1,19 +1,19 @@
-
 "use client";
 
 import { useRef, useState, useEffect } from "react";
 import { Editor, OnMount } from "@monaco-editor/react";
 import LanguageSelector from "./LanguageSelector";
 import { CODE_SNIPPETS, LANGUAGE_VERSIONS } from "../constants/constants";
-import Testdashboard from "./Testdashboard";
+import axios from "axios";
 
-const CodeEditor: React.FC = () => {
-    
-  const editorRef = useRef<any>(null); 
+interface codeEditorProps{
+  setOutputData : (data : any) => void;
+}
+
+const CodeEditor: React.FC<codeEditorProps> = ({ setOutputData }) => {
+  const editorRef = useRef<any>(null);
   const [language, setLanguage] = useState<keyof typeof LANGUAGE_VERSIONS>("javascript");
   const [value, setValue] = useState<string>("");
-  const [isCodeRunning, setCodeRunning] = useState<boolean>(false);
-
 
   const onSelect = (language: keyof typeof LANGUAGE_VERSIONS) => {
     setLanguage(language);
@@ -25,10 +25,32 @@ const CodeEditor: React.FC = () => {
     editor.focus();
   };
 
-  const handleRun = () => {
-    console.log("Run clicked");
+  const handleRun = async () => 
+  {
     const code = editorRef.current.getValue();
-    console.log(code);
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/run-code`,
+        {
+          language: language,
+          script: code,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      // code editor lifts up the data to the parent (the editor page);
+      // ignore --> console.log(response.data);
+
+      setOutputData(response.data);
+
+    } catch (error: any){
+        console.error(error.message);
+      };
+    
   };
 
   const handleSubmit = () => {
@@ -37,18 +59,15 @@ const CodeEditor: React.FC = () => {
     console.log(code);
   };
 
-
-
   return (
     <div className="flex flex-col w-full h-full">
-    <div className="flex items-center h-auto justify-between bg-gray-800 px-4 py-3 rounded-t-md">
-      
-      <div className="flex items-center gap-2">
-        <h1 className=" text-gray-200 text-lg font-bold">Code Editor</h1>
-        <LanguageSelector language={language} onSelect={onSelect} />
-      </div>
-      
-      <div className="flex gap-2">
+      <div className="flex items-center h-auto justify-between bg-gray-800 px-4 py-3 rounded-t-md">
+        <div className="flex items-center gap-2">
+          <h1 className=" text-gray-200 text-lg font-bold">Code Editor</h1>
+          <LanguageSelector language={language} onSelect={onSelect} />
+        </div>
+
+        <div className="flex gap-2">
           {/* Run Button */}
           <button
             onClick={handleRun}
@@ -64,28 +83,21 @@ const CodeEditor: React.FC = () => {
           >
             Submit
           </button>
+        </div>
       </div>
-        </div>
-     
-     
-          <Editor
-            height='calc(100vh - 64px)'
-            theme="vs-dark"
-            language={language}
-            defaultValue="// Start coding here..."
-            onMount={onMount}
-            value={value}
-            onChange={(value) => setValue(value || "")} // Update state with editor value
-            className="rounded-md shadow-md border border-gray-700"
-          />
 
-          
-        </div>
+      <Editor
+        height="calc(100vh - 64px)"
+        theme="vs-dark"
+        language={language}
+        defaultValue="// Start coding here..."
+        onMount={onMount}
+        value={value}
+        onChange={(value) => setValue(value || "")} // Update state with editor value
+        className="rounded-md shadow-md border border-gray-700"
+      />
+    </div>
   );
 };
 
 export default CodeEditor;
-
-
-
-
