@@ -1,6 +1,6 @@
-
+"use client"
 import { useState,useEffect } from "react";
-import Description from "../components/description";
+import Description from "../components/Description";
 import CodeEditor from "../components/CodeEditor";
 
 interface testCaseData{

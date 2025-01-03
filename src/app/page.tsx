@@ -1,6 +1,6 @@
 import Dashboard from "./dashboard/page";
 import Subject from "./subject/page";
-import Description from "./components/description";
+import Description from "./components/Description";
 import CodeEditor from "./components/CodeEditor";
 import Editor from "./editor/page";
 import LoginPage from "./loginpage/page";
@@ -17,7 +17,7 @@ export default function Home() {
     // <Subject/>
     // <Description/>
     // <Editor/>
-    // <Editor/>
-    <Testdashboard/>
+    <Editor/>
+    // <Testdashboard/>
   );
 }

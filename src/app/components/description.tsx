@@ -1,7 +1,11 @@
-import React from 'react'
+"use client"
 
 import { useState } from 'react';
 import { MdOutlineDescription } from "react-icons/md";
+import Testdashboard from './Testdashboard';
+
+
+// make arrangements for the testdashboard component.
 
 
 interface testCaseData{
@@ -15,16 +19,21 @@ interface descriptionProps{
 }
 
 const Description = ({testcaseData, outputData}:descriptionProps) => {
+
+  const [toggle, setToggle] = useState<boolean>(false);
+
   return (
     <main className='flex flex-col h-auto w-[450px] overflow-hidden rounded-md bg-gray-800 border border-black'>
 
         {/* Description.TitleBar */}
-        <div className='flex text-white font-semibold bg-gray-700 rounded-md m-1 py-4'>
+        <div className='flex flex-row justify-between text-white font-semibold bg-gray-700 rounded-md m-1 py-4'>
             {/* icon div */}
             <div className='flex items-center justify-center text-cyan-400 text-xl pl-2 pr-2'>
                 <MdOutlineDescription />
-                <span className='text-gray-200 pl-2'>Description</span>
+                <span className='text-gray-200 pl-2 '>Description</span>
             </div>
+
+            <button className='rounded-lg mr-4 bg-gray-600 border border-gray-500 text-white font-semibold px-3 py-2 hover:bg-gray-800'>Test Cases ▼</button>
         </div>
 
         {/* Content Section */}
