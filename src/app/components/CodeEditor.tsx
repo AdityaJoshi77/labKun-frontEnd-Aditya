@@ -5,12 +5,15 @@ import { useRef, useState, useEffect } from "react";
 import { Editor, OnMount } from "@monaco-editor/react";
 import LanguageSelector from "./LanguageSelector";
 import { CODE_SNIPPETS, LANGUAGE_VERSIONS } from "../constants/constants";
+import Testdashboard from "./Testdashboard";
 
 const CodeEditor: React.FC = () => {
     
   const editorRef = useRef<any>(null); 
   const [language, setLanguage] = useState<keyof typeof LANGUAGE_VERSIONS>("javascript");
   const [value, setValue] = useState<string>("");
+  const [isCodeRunning, setCodeRunning] = useState<boolean>(false);
+
 
   const onSelect = (language: keyof typeof LANGUAGE_VERSIONS) => {
     setLanguage(language);

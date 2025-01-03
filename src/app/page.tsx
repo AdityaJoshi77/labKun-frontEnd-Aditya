@@ -17,7 +17,7 @@ export default function Home() {
     // <Subject/>
     // <Description/>
     // <Editor/>
-    <SignUp/>
-    // <Testdashboard/>
+    // <Editor/>
+    <Testdashboard/>
   );
 }
